@@ -7,7 +7,7 @@ package io.arkeus.tiled {
 	public class TiledTileset {
 		/** The first global tile id in the tileset. */
 		public var firstGid:uint;
-		/** The name of the tilset. */
+		/** The name of the tileset. */
 		public var name:String;
 		/** The maximum width of tiles in this tileset. */
 		public var tileWidth:uint;
@@ -27,22 +27,38 @@ package io.arkeus.tiled {
 		public var terrain:Object;
 		/** A map from gid to tile for all the non-standard tiles in the tileset. */
 		public var tiles:Object;
+        /** If this tileset is stored in an external TSX (Tile Set XML) file, this attribute refers to that file. **/
+        public var source:String;
 
 		public function TiledTileset(tmx:XML) {
 			firstGid = tmx.@firstgid;
-			name = tmx.@name;
-			tileWidth = tmx.@tilewidth;
-			tileHeight = tmx.@tileheight;
-			spacing = "@spacing" in tmx ? tmx.@spacing : 0;
-			margin = "@margin" in tmx ? tmx.@margin : 0;
-
-			var offset:XMLList = tmx.tileoffset;
-			tileOffset = offset.length() == 1 ? new Point(offset.@x, offset.@y) : new Point;
-
-			image = new TiledImage(tmx.image);
-			terrain = loadTerrain(tmx.terraintypes);
-			tiles = loadTiles(tmx.tile);
+            if ("@source" in tmx) {
+                source = tmx.@source;
+            } else {
+                loadTileset(tmx);
+            }
 		}
+
+        /**
+         * Given a <tileset> object, parses the tileset.
+         *
+         * @param tmx The <tileset> object.
+         */
+        public function loadTileset(tmx:XML):void {
+            name = tmx.@name;
+            tileWidth = tmx.@tilewidth;
+            tileHeight = tmx.@tileheight;
+            spacing = "@spacing" in tmx ? tmx.@spacing : 0;
+            margin = "@margin" in tmx ? tmx.@margin : 0;
+
+            var offset:XMLList = tmx.tileoffset;
+            tileOffset = offset.length() == 1 ? new Point(offset.@x, offset.@y) : new Point;
+
+            properties = new TiledProperties(tmx.properties);
+            image = new TiledImage(tmx.image);
+            terrain = loadTerrain(tmx.terraintypes);
+            tiles = loadTiles(tmx.tile);
+        }
 
 		/**
 		 * Given a tileset, loads all the terrains from the terraintypes object.
