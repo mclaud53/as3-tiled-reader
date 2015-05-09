@@ -18,7 +18,7 @@ package io.arkeus.tiled {
 		 * Returns the property for the given key.
 		 * 
 		 * @param key The name of the property.
-         * @param defaultValue The default value returns if key not exists. Optional, by default null.
+		 * @param defaultValue The default value returns if key not exists. Optional, by default null.
 		 * @return The property value.
 		 */
 		public function get(key:String, defaultValue: String = null):String {
