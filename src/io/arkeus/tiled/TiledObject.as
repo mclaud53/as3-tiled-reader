@@ -24,6 +24,8 @@ package io.arkeus.tiled {
 		public var width:uint;
 		/** The height of the object. */
 		public var height:uint;
+        /** The rotation of the object in degrees clockwise (defaults to 0). **/
+        public var rotation:Number;
 		/** Whether or not this object is visible. */
 		public var visible:Boolean;
 		/** The properties of the object. */
@@ -41,6 +43,7 @@ package io.arkeus.tiled {
 			y = tmx.@y;
 			width = "@width" in tmx ? tmx.@width : 0;
 			height = "@height" in tmx ? tmx.@height : 0;
+            rotation = "@rotation" in tmx ? tmx.@rotation : 0;
 			visible = !("@visible" in tmx && tmx.@visible == "0");
 			properties = new TiledProperties(tmx.properties);
 			shape = RECTANGLE;
