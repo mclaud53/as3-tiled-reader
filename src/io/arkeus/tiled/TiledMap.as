@@ -8,8 +8,8 @@ package io.arkeus.tiled {
 		public var version:String;
 		/** Map orientation, one of: orthogonal, isometric, stagerred. */
 		public var orientation:String;
-        /** Render order, one of: right-down, right-up, left-down, left-up. **/
-        public var renderOrder:String;
+		/** Render order, one of: right-down, right-up, left-down, left-up. **/
+		public var renderOrder:String;
 		/** The width of the map in tiles. */
 		public var width:uint;
 		/** The height of the map in tiles. */
@@ -18,10 +18,10 @@ package io.arkeus.tiled {
 		public var tileWidth:uint;
 		/** The height of a tile in pixels. */
 		public var tileHeight:uint;
-        /** Stagger axis, one of: y, x. **/
-        public var staggerAxis:String;
-        /** Stagger index, one of: odd, even. **/
-        public var staggerIndex: String;
+		/** Stagger axis, one of: y, x. **/
+		public var staggerAxis:String;
+		/** Stagger index, one of: odd, even. **/
+		public var staggerIndex: String;
 		/** The background color of the map. */
 		public var backgroundColor:uint;
 		/** Properties of the map. */
@@ -34,13 +34,13 @@ package io.arkeus.tiled {
 		public function TiledMap(tmx:XML) {
 			version = "@version" in tmx ? tmx.@version : "?";
 			orientation = "@orientation" in tmx ? tmx.@orientation : "othogonal";
-            renderOrder = "@renderorder" in tmx ? tmx.@renderorder : "right-down";
+			renderOrder = "@renderorder" in tmx ? tmx.@renderorder : "right-down";
 			width = tmx.@width;
 			height = tmx.@height;
 			tileWidth = tmx.@tilewidth;
 			tileHeight = tmx.@tileheight;
-            staggerAxis = "@staggeraxis" in tmx ? tmx.@staggeraxis : "y";
-            staggerIndex = "@staggerindex" in tmx ? tmx.@staggerindex : "odd";
+			staggerAxis = "@staggeraxis" in tmx ? tmx.@staggeraxis : "y";
+			staggerIndex = "@staggerindex" in tmx ? tmx.@staggerindex : "odd";
 			backgroundColor = "@backgroundcolor" in tmx ? TiledUtils.colorStringToUint(tmx.@backgroundcolor) : 0xffffff;
 			properties = new TiledProperties(tmx.properties);
 			tilesets = new TiledTilesets(tmx.tileset);

@@ -36,10 +36,10 @@ package io.arkeus.tiled {
 		public var properties:TiledProperties;
 		/** Tile image. */
 		public var image:TiledImage;
-        /** Tile animation. */
-        public var animation:TiledAnimation;
-        /** The list of objects for detecting of collisions **/
-        public var objectGroup:Vector.<TiledObject> = new Vector.<TiledObject>();
+		/** Tile animation. */
+		public var animation:TiledAnimation;
+		/** The list of objects for detecting of collisions **/
+		public var objectGroup:Vector.<TiledObject> = new Vector.<TiledObject>();
 		
 		public function TiledTile(tmx:XML) {
 			id = tmx.@id;
@@ -48,12 +48,12 @@ package io.arkeus.tiled {
 			probability = "@probability" in tmx ? tmx.@probability : Number.NaN;
 			properties = new TiledProperties(tmx.properties);
 			image = new TiledImage(tmx.image);
-            animation = new TiledAnimation(tmx.animation);
+			animation = new TiledAnimation(tmx.animation);
 
-            var objectList:XMLList = tmx.object;
-            for (var i:uint = 0; i < objectList.length(); i++) {
-                objectGroup.push(new TiledObject(objectList[i]));
-            }
+			var objectList:XMLList = tmx.object;
+			for (var i:uint = 0; i < objectList.length(); i++) {
+				objectGroup.push(new TiledObject(objectList[i]));
+			}
 		}
 		
 		/**
