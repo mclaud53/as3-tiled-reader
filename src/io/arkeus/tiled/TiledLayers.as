@@ -61,6 +61,15 @@ package io.arkeus.tiled {
 		}
 
 		/**
+		 * Returns a vector of all image layers in order from bottom to top.
+		 *
+		 * @return The vector of all image layers.
+		 */
+		public function getImageLayers():Vector.<TiledLayer> {
+			return layers.filter(function(el:TiledLayer, i:int, arr:Vector.<TiledLayer>):Boolean { return el is TiledImageLayer; });
+		}
+
+		/**
 		 * Returns the number of layers in the map.
 		 * 
 		 * @return The number of layers. 
