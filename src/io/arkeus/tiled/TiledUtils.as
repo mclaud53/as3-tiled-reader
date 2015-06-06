@@ -64,6 +64,8 @@ package io.arkeus.tiled {
 					data.endian = Endian.LITTLE_ENDIAN;
 					return data;
 				case null:
+					data.position = 0;
+					data.endian = Endian.LITTLE_ENDIAN;
 					return data;
 				default:
 					throw new Error("Unsupported compression: " + compression);
